@@ -173,6 +173,8 @@ num_iterations = 20000  # int
 collect_steps_per_iteration = 1  # int
 log_interval = 200  # int
 eval_interval = 1000  # int
+
+# The main training implementation of the code that calls methods from above:
 for _ in range(num_iterations):
 
   # Collect a few steps using collect_policy and save to the replay buffer.
@@ -192,6 +194,7 @@ for _ in range(num_iterations):
     print('step = {0}: Average Return = {1}'.format(step, avg_return))
     returns.append(avg_return)
 
+    
 env = gym.make('CartPole-v0')
 for i_episode in range(20):
     observation = env.reset()
