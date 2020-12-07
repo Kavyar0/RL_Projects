@@ -20,15 +20,12 @@ from tf_agents.replay_buffers import tf_uniform_replay_buffer
 from tf_agents.trajectories import trajectory
 from tf_agents.utils import common
 
-
-
 env_name = 'CartPole-v0'
 env = suite_gym.load(env_name)
 env.reset()
 
-# The environment’s step function returns exactly what we need.
-# In fact, step returns 4 values: observation(object),
-# reward(float), done(boolean), info(dict)
+# The environment’s step function returns 4 values: 
+# observation(object), reward(float), done(boolean), info(dict)
 
 print('Observation Spec:' + env.time_step_spec().observation)
 print('Reward Spec:' + env.time_step_spec().reward)
@@ -183,7 +180,6 @@ for _ in range(num_iterations):
   # Sample a batch of data from the buffer and update the agent's network.
   experience, unused_info = next(iterator)
   train_loss = agent.train(experience).loss
-
   step = agent.train_step_counter.numpy()
 
   if step % log_interval == 0:
