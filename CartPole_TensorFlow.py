@@ -204,9 +204,3 @@ for i_episode in range(20):
             print("Episode finished after {} timesteps".format(t+1))
             break
 env.close()
-
-# observation = [position of cartpole, angle of the cartpole]
-# graph_action = agent.policy.predict(graph_observation)
-# action = graph_action2action(graph_Action)
-# env.step(action)
-# graph_action2action - function to condense graph into a vector
