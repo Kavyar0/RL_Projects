@@ -1,8 +1,6 @@
 import gym
 import numpy as np
 
-parameters = np.random.rand(4) * 2-1
-
 def run_episode(env, parameters):
     observation = env.reset()
     totalReward = 0
@@ -18,25 +16,23 @@ def train(submit):
     env = gym.make('CartPole-v0')
     if submit:
         env.monitor.start('cartpole-experiments/', force=True)
-
-    counter = 0
-    bestparams = None
+    count = 0
+    bestparams = 0
     bestreward = 0
     for _ in range(10000):
-        counter += 1
-        parameters = np.random.rand(4) * 2 - 1
+        count += 1
+        parameters = np.random.rand(4) * 2 - 2
         reward = run_episode(env, parameters)
         if reward > bestreward:
             bestreward = reward
             bestparams = parameters
             if reward == 200:
                 break
-
     if submit:
         for _ in range(100):
             run_episode(env, bestparams)
         env.monitor.close()
-    return counter
+    return count
 
 env = gym.make('CartPole-v0')
 for i_episode in range(20):
